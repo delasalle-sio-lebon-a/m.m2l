@@ -75,8 +75,28 @@ class DAO
 	// -------------------------------------- Méthodes d'instances ------------------------------------------
 	// ------------------------------------------------------------------------------------------------------
 
+	public function aPasseDesReservations($nom)
+	{
+	    $txt_req="Select count(*) from mrbs_entry where name =:nom ";
+	    $req = $this->cnx->prepare($txt_req);
+	    // liaison de la requête et de ses paramètres
+	    $req->bindValue("nom", $nom, PDO::PARAM_STR);
+	    // exécution de la requete
+	    $req->execute();
+	    $nbReponses = $req->fetchColumn(0);
+	    // libère les ressources du jeu de données
+	    $req->closeCursor();
+	    
+	    // fourniture de la réponse
+	    if ($nbReponses == 0)
+	        return false;
+	        else
+	            return true;
+	}
+	    
+	
 
-
+	
 	// mise à jour de la table mrbs_entry_digicode (si besoin) pour créer les digicodes manquants
 	// cette fonction peut dépanner en cas d'absence des triggers chargés de créer les digicodes
 	// modifié par Jim le 5/5/2015
