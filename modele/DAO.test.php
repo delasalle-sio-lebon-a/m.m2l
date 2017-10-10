@@ -121,7 +121,7 @@ echo "'zenelsy' a créé la réservation 11 : <b>" . $estLeCreateur . "</b></p>"
 */
 
 
-
+/*
 // test de la méthode existeReservation -----------------------------------------------------------
 // modifié par Jim le 25/9/2015
 echo "<h3>Test de existeReservation : </h3>";
@@ -129,7 +129,7 @@ if ($dao->existeReservation("1")) $existe = "oui"; else $existe = "non";
 echo "<p>Existence de la réservation 1 : <b>" . $existe . "</b><br>";
 if ($dao->existeReservation("12")) $existe = "oui"; else $existe = "non";
 echo "Existence de la réservation 12 : <b>" . $existe . "</b></p>";
-
+*/
 
 /*
 // test de la méthode existeUtilisateur -----------------------------------------------------------
@@ -199,7 +199,7 @@ $niveauUtilisateur = $dao->getNiveauUtilisateur('guesdonm', 'passe');
 echo "NiveauUtilisateur de ('guesdonm', 'passe') : <b>" . $niveauUtilisateur . "</b></p>";
 */
 
-/*
+
 // test de la méthode getReservation --------------------------------------------------------------
 // modifié par Jim le 25/9/2015
 echo "<h3>Test de getReservation : </h3>";
@@ -213,7 +213,7 @@ if ($laReservation)
 	echo "<p>La réservation 12 existe : <br>" . $laReservation->toString() . "</p>";
 else
 	echo "<p>La réservation 12 n'existe pas !</p>";	
-*/
+
 
 
 /*
