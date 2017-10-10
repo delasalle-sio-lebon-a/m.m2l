@@ -76,7 +76,24 @@ class DAO
 	// ------------------------------------------------------------------------------------------------------
 
 
-
+    
+	
+	public function annulerReservation($laReservation)
+	{
+	    $txt_req1 = "DELETE * FROM mrbs.entry WHERE id = $laReservation";
+	    $req1 = $this->cnx->prepare($txt_req1);
+	    // extraction des données
+	    $req1->execute();
+	    
+	    
+	}
+	
+	
+	
+	
+	
+	
+	
 	// mise à jour de la table mrbs_entry_digicode (si besoin) pour créer les digicodes manquants
 	// cette fonction peut dépanner en cas d'absence des triggers chargés de créer les digicodes
 	// modifié par Jim le 5/5/2015
@@ -182,6 +199,27 @@ class DAO
 			return true;
 	}
 
+	
+	
+	public function existeReservation($uneReservation)
+	{
+	    $txt_req = "Select count(*) from mrbs_entry where id = :uneReservation";
+	    $req = $this->cnx->prepare($txt_req);
+	    // liaison de la requête et de ses paramètres
+	    $req->bindValue(":uneReservation", $uneReservation, PDO::PARAM_STR);
+	    // exécution de la requete
+	    $req->execute();
+	    $nbReponses = $req->fetchColumn(0);
+	    // libère les ressources du jeu de données
+	    $req->closeCursor();
+	    
+	    // fourniture de la réponse
+	    if ($nbReponses == 0)
+	        return false;
+	    else
+	            return true;
+	}
+	
 	// génération aléatoire d'un digicode de 6 caractères hexadécimaux
 	// modifié par Jim le 5/5/2015
 	public function genererUnDigicode()
@@ -277,6 +315,7 @@ class DAO
 	// fournit la valeur 0 si le digicode n'est pas bon, 1 si le digicode est bon
 	// modifié par Jim le 18/5/2015
 	public function testerDigicodeSalle($idSalle, $digicodeSaisi)
+	
 	{	global $DELAI_DIGICODE;
 		// préparation de la requete de recherche
 		$txt_req = "Select count(*)";
@@ -305,7 +344,39 @@ class DAO
 		else
 			return "1";
 	}
+
+	/*
+	public function getReservation($idReservation)
+	{
+	    // préparation de la requete de recherche
+	    $txt_req = "Select mrbs_entry.id as id_entry";
+	    $txt_req = $txt_req . " from mrbs_entry";
+	    $txt_req = $txt_req . " where mrbs_entry.id = :idReservation";
+	    
+	    $req = $this->cnx->prepare($txt_req);
+	    // liaison de la requête et de ses paramètres
+	    $req->bindValue(":idReservation", $idReservation, PDO::PARAM_STR);
+	    // extraction des données
+	    $req->execute();
+	    $uneLigne = $req->fetch(PDO::FETCH_OBJ);
+	    
+	    // tant qu'une ligne est trouvée :
+	    if ($uneLigne)
+	    {	// création d'un objet Reservation
+	        $unId = utf8_encode($uneLigne->id_entry);
 	
+	        
+	        $uneReservation = new Reservation($unId  );
+	        // ajout de la réservation à la collection
+	        $laReservation[] = $uneReservation;
+	        // extrait la ligne suivante
+	        $uneLigne = $req->fetch(PDO::FETCH_OBJ);
+	    }
+	    // libère les ressources du jeu de données
+	    $req->closeCursor();
+	    // fourniture de la collection
+	    return $laReservation;
+	}*/
 } // fin de la classe DAO
 
 // ATTENTION : on ne met pas de balise de fin de script pour ne pas prendre le risque
