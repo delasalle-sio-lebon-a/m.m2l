@@ -362,6 +362,7 @@ class DAO
 	}
 
 	public function getReservation($idReservation)
+	
 	{
 	    // préparation de la requete de recherche
 	    $txt_req = "Select mrbs_entry.id as id_entry, timestamp, start_time, end_time, room_name, status, digicode";
@@ -400,6 +401,7 @@ class DAO
 	   
 	}
 	
+
     // extrait la ligne suivante
 	     
 	    
@@ -441,6 +443,75 @@ class DAO
 	}
 	 
 	
+
+	
+	
+	public function getUtilisateur($nomUser)
+	{
+	    // préparation de la requete de recherche
+	    $txt_req = "Select id, level, name, password, email";
+	    $txt_req = $txt_req . " from mrbs_users";
+	    $txt_req = $txt_req . " where name = :nomUser";
+	    
+	    $req = $this->cnx->prepare($txt_req);
+	    // liaison de la requête et de ses paramètres
+	    $req->bindValue(":nomUser", $nomUser, PDO::PARAM_STR);
+	    // extraction des données
+	    $req->execute();
+	    $uneLigne = $req->fetch(PDO::FETCH_OBJ);
+	    
+	    // tant qu'une ligne est trouvée :
+	    if ($uneLigne)
+	    {	// création d'un objet Reservation
+	        $unId = utf8_encode($uneLigne->id);
+	        $unLevel = utf8_encode($uneLigne->level);
+	        $unName = utf8_encode($uneLigne->name);
+	        $unPassword = utf8_encode($uneLigne->password);
+	        $unEmail = utf8_encode($uneLigne->email);
+	        
+	        
+	        $unUtilisateur = new Utilisateur($unId, $unLevel, $unName, $unPassword, $unEmail);
+	        // ajout de la réservation à la collection
+	        $req->closeCursor();
+	        // extrait la ligne suivante
+	        return $unUtilisateur;
+	    }
+	    Else
+	       return null;
+	    
+	}
+	
+	public function testerDigicodeBatiment($areaSaisie, $digicodeSaisi)
+	
+	{	global $DELAI_DIGICODE;
+	// préparation de la requete de recherche
+	$txt_req = "Select count(*)";
+	$txt_req = $txt_req . " from mrbs_area, mrbs_entry_digicode";
+	$txt_req = $txt_req . " where mrbs_area.id = mrbs_entry_digicode.id";
+	$txt_req = $txt_req . " and room_id = :idSalle";
+	$txt_req = $txt_req . " and digicode = :digicodeSaisi";
+	$txt_req = $txt_req . " and (start_time - :delaiDigicode) < " . time();
+	$txt_req = $txt_req . " and (end_time + :delaiDigicode) > " . time();
+	
+	$req = $this->cnx->prepare($txt_req);
+	// liaison de la requête et de ses paramètres
+	$req->bindValue("idSalle", $idSalle, PDO::PARAM_STR);
+	$req->bindValue("digicodeSaisi", $digicodeSaisi, PDO::PARAM_STR);
+	$req->bindValue("delaiDigicode", $DELAI_DIGICODE, PDO::PARAM_INT);
+	
+	// exécution de la requete
+	$req->execute();
+	$nbReponses = $req->fetchColumn(0);
+	// libère les ressources du jeu de données
+	$req->closeCursor();
+	
+	// fourniture de la réponse
+	if ($nbReponses == 0)
+	    return "0";
+	    else
+	        return "1";
+	}
+
 } // fin de la classe DAO
 
 // ATTENTION : on ne met pas de balise de fin de script pour ne pas prendre le risque
