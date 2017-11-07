@@ -94,7 +94,17 @@ class DAO
 	            return true;
 	}
 	    
-    
+	public function confirmerReservation($idReservation)
+    {
+        $txt_req="UPDATE mrbs_room SET status = '0' WHERE id =:idReservation";
+        $req = $this->cnx->prepare($txt_req);
+         //liaison de la requête et de ses paramètres
+        $req->bindValue("idReservation", $idReservation, PDO::PARAM_STR);
+	
+        $ok=$req->execute();
+        return $ok;
+    }
+
 	
 	public function annulerReservation($laReservation)
 	{
@@ -102,7 +112,6 @@ class DAO
 	    $req1 = $this->cnx->prepare($txt_req1);
 	    // extraction des données
 	    $req1->execute();
-	    
 	    
 	}
 	
@@ -193,6 +202,30 @@ class DAO
 		$ok = $req->execute();
 		return $ok;
 	}
+	
+	public function supprimerUtilisateur($nom)
+	{
+	    $existe = $this->existeUtilisateur($nom);
+	    
+	    if ($existe == true)
+	    {
+	        $txt_req= "DELETE FROM  mrbs_users WHERE name = :nom";
+	        $req = $this->cnx->prepare($txt_req);
+	        // liaison de la requête et de ses paramètres
+	        $req->bindValue("nom", $nom, PDO::PARAM_STR);
+	        
+	        $ok = $req->execute();
+	        
+	        return $ok;
+	    }
+	        
+	    else 
+	    {
+	        
+	      return false;
+	        
+	   }
+	}	
 
 	// fournit true si l'utilisateur ($nomUser) existe, false sinon
 	// modifié par Jim le 5/5/2015
@@ -435,7 +468,10 @@ class DAO
 	
 
     // extrait la ligne suivante
-	     
+	     public function envoyerMdp($nom, $nouveauMdp)
+	     {
+	         
+	     }
 	    
 	public function getLesSalles()
 	{	// préparation de la requete de recherche
@@ -514,6 +550,23 @@ class DAO
     }
 	
 	
+    public function envoyerMdp($nouveauMdp, $nomUser)  
+{
+    global $ADR_MAIL_EMETTEUR;
+    
+    if ( ! this.existeUtilisateur($nomUser)) return false;
+    
+       $adrMail= $this->getUtilisateur($nomUser)->getEMail(); 
+       
+       $sujet="Votre Nouveau mot de passe";
+       $message="Modification du mot de passe effectué";
+       $message="Confirmation" .$nouveauMdp;
+       $ok=Outils::envoyerMail($adresseDestinataire, $sujet, $message, $adresseEmetteur);
+       
+       return $ok;
+ }
+    
+
 
 
 	
