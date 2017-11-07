@@ -538,14 +538,14 @@ class DAO
     {
         global $ADR_MAIL_EMETTEUR;
         
-        if ( ! this.existeUtilisateur($nomUser)) return false;
+        if ( ! $this->existeUtilisateur($nomUser)) return false;
         
-           $adrMail= $this->getUtilisateur($nomUser)->getEMail(); 
+           $adresseDestinataire= $this->getUtilisateur($nomUser)->getEMail(); 
            
-           $sujet="Votre Nouveau mot de passe";
+           $sujet="Nouveau mot de passe";
            $message="Modification du mot de passe effectué";
-           $message="Confirmation" . $nouveauMdp;
-           $ok=Outils::envoyerMail($adresseDestinataire, $sujet, $message, $adresseEmetteur);
+           $message="Votre nouveau mot de passe est " . $nouveauMdp;
+           $ok=Outils::envoyerMail($adresseDestinataire, $sujet, $message, $ADR_MAIL_EMETTEUR);
            
            return $ok;
      }
