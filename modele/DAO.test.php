@@ -110,15 +110,15 @@ else
 */
 
 
-/*
+
 // test de la méthode estLeCreateur ---------------------------------------------------------------
 // modifié par Jim le 25/9/2015
 echo "<h3>Test de estLeCreateur : </h3>";
-if ($dao->estLeCreateur("admin", "11")) $estLeCreateur = "oui"; else $estLeCreateur = "non";
-echo "<p>'admin' a créé la réservation 11 : <b>" . $estLeCreateur . "</b><br>";
+if ($dao->estLeCreateur("maupin", "1")) $estLeCreateur = "oui"; else $estLeCreateur = "non";
+echo "<p>'maupin' a créé la réservation 1 : <b>" . $estLeCreateur . "</b><br>";
 if ($dao->estLeCreateur("zenelsy", "11")) $estLeCreateur = "oui"; else $estLeCreateur = "non";
 echo "'zenelsy' a créé la réservation 11 : <b>" . $estLeCreateur . "</b></p>";
-*/
+
 
 
 /*
@@ -173,7 +173,7 @@ foreach ($lesReservations as $uneReservation)
 */
 
 
-
+/*
 // test de la méthode getLesSalles ----------------------------------------------------------------
 // modifié par Jim le 26/5/2016
 echo "<h3>Test de getLesSalles : </h3>";
@@ -185,7 +185,7 @@ foreach ($lesSalles as $uneSalle)
 {	echo ($uneSalle->getRoom_name());
 	echo ('<br>');
 }
-
+*/
 
 /*
 // test de la méthode getNiveauUtilisateur --------------------------------------------------------
@@ -266,13 +266,13 @@ else
 */
 
 
-
+/*
 // test de la méthode testerDigicodeBatiment ------------------------------------------------------
 // modifié par Jim le 28/9/2015
 echo "<h3>Test de testerDigicodeBatiment : </h3>";
-$reponse = $dao->testerDigicodeBatiment("34214E");
+$reponse = $dao->testerDigicodeBatiment("948D2A");
 echo "<p>L'appel de testerDigicodeBatiment('34214E') donne : <b>" . $reponse . "</b><br>";
-
+*/
 
 
 /*
