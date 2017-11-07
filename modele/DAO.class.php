@@ -426,8 +426,7 @@ class DAO
 	}
 	
 	
-	public function getReservation($idReservation)
-	
+	public function getReservation($idReservation)	
 	{
 	    // préparation de la requete de recherche
 	    $txt_req = "Select mrbs_entry.id as id_entry, timestamp, start_time, end_time, room_name, status, digicode";
@@ -465,14 +464,7 @@ class DAO
 	       return null;
 	   
 	}
-	
-
-    // extrait la ligne suivante
-	     public function envoyerMdp($nom, $nouveauMdp)
-	     {
-	         
-	     }
-	    
+		    
 	public function getLesSalles()
 	{	// préparation de la requete de recherche
 	    $txt_req = "Select * FROM mrbs_room WHERE disabled =0 ";
@@ -511,9 +503,6 @@ class DAO
 	}
 	 
 	
-
-	
-	
     public function getUtilisateur($nomUser)
 	{
 	    // préparation de la requete de recherche
@@ -550,21 +539,21 @@ class DAO
     }
 	
 	
-    public function envoyerMdp($nouveauMdp, $nomUser)  
-{
-    global $ADR_MAIL_EMETTEUR;
-    
-    if ( ! this.existeUtilisateur($nomUser)) return false;
-    
-       $adrMail= $this->getUtilisateur($nomUser)->getEMail(); 
-       
-       $sujet="Votre Nouveau mot de passe";
-       $message="Modification du mot de passe effectué";
-       $message="Confirmation" .$nouveauMdp;
-       $ok=Outils::envoyerMail($adresseDestinataire, $sujet, $message, $adresseEmetteur);
-       
-       return $ok;
- }
+    public function envoyerMdp($nomUser, $nouveauMdp)  
+    {
+        global $ADR_MAIL_EMETTEUR;
+        
+        if ( ! this.existeUtilisateur($nomUser)) return false;
+        
+           $adrMail= $this->getUtilisateur($nomUser)->getEMail(); 
+           
+           $sujet="Votre Nouveau mot de passe";
+           $message="Modification du mot de passe effectué";
+           $message="Confirmation" . $nouveauMdp;
+           $ok=Outils::envoyerMail($adresseDestinataire, $sujet, $message, $adresseEmetteur);
+           
+           return $ok;
+     }
     
 
 
