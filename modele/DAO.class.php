@@ -101,18 +101,22 @@ class DAO
          //liaison de la requête et de ses paramètres
         $req->bindValue("idReservation", $idReservation, PDO::PARAM_STR);
 	
-        $ok=$req->execute();
+        // exécution de la requête
+        $ok = $req->execute();
         return $ok;
     }
 
 	
-	public function annulerReservation($laReservation)
+	public function annulerReservation($idReservation)
 	{
-	    $txt_req1 = "DELETE * FROM mrbs.entry WHERE id = $laReservation";
-	    $req1 = $this->cnx->prepare($txt_req1);
-	    // extraction des données
-	    $req1->execute();
+	    $txt_req = "DELETE * FROM mrbs.entry WHERE id = :$idReservation";
+	    $req = $this->cnx->prepare($txt_req);
+	    //liaison de la requête et de ses paramètres
+	    $req->bindValue("idReservation", $idReservation, PDO::PARAM_STR);
 	    
+	    // exécution de la requête
+	    $ok = $req->execute();
+	    return $ok;
 	}
 	
 	
