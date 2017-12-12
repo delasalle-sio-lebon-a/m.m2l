@@ -24,7 +24,7 @@
 session_start();		// permet d'utiliser des variables de session
 
 // si $debug est égal à true, certaines variables sont affichées (pour la mise au point)
-$debug = false;
+$debug = true;
 
 // choix des styles graphiques
 $version = "1.4.5";			// choix de la version de JQuery Mobile (voir fichier head.php) : 1.2.0,  1.2.1,  1.3.2,  1.4.5
@@ -63,8 +63,8 @@ switch($action){
 		include_once ('controleurs/CtrlMenu.php'); break;
 	}
 	case 'DemanderMdp': {
-		//include_once ('controleurs/CtrlDemanderMdp.php'); break;
-		include_once ('controleurs/CtrlConnecter.php'); break;	// ligne provisoire
+		include_once ('controleurs/CtrlDemanderMdp.php'); break;
+		//include_once ('controleurs/CtrlConnecter.php'); break;	// ligne provisoire
 	}
 	case 'ConsulterSalles': {
 		//include_once ('controleurs/CtrlConsulterSalles.php'); break;
@@ -74,12 +74,12 @@ switch($action){
 		include_once ('controleurs/CtrlConsulterReservations.php'); break;
 	}
 	case 'ConfirmerReservation': {
-		//include_once ('controleurs/CtrlConfirmerReservation.php'); break;
-		include_once ('controleurs/CtrlMenu.php'); break;	// ligne provisoire
+		include_once ('controleurs/CtrlConfirmerReservation.php'); break;
+		//include_once ('controleurs/CtrlMenu.php'); break;	// ligne provisoire
 	}
 	case 'AnnulerReservation': {
-		//include_once ('controleurs/CtrlAnnulerReservation.php'); break;
-		include_once ('controleurs/CtrlMenu.php'); break;	// ligne provisoire
+		include_once ('controleurs/CtrlAnnulerReservation.php'); break;
+		//include_once ('controleurs/CtrlMenu.php'); break;	// ligne provisoire
 	}
 	case 'ChangerDeMdp': {
 		//include_once ('controleurs/CtrlChangerDeMdp.php'); break;

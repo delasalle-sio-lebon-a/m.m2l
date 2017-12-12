@@ -99,7 +99,7 @@ class DAO
         $txt_req="UPDATE mrbs_room SET status = '0' WHERE id =:idReservation";
         $req = $this->cnx->prepare($txt_req);
          //liaison de la requête et de ses paramètres
-        $req->bindValue("idReservation", $idReservation, PDO::PARAM_STR);
+        $req->bindValue("idReservation", $idReservation, PDO::PARAM_INT);
 	
         // exécution de la requête
         $ok = $req->execute();
@@ -109,10 +109,10 @@ class DAO
 	
 	public function annulerReservation($idReservation)
 	{
-	    $txt_req = "DELETE * FROM mrbs.entry WHERE id = :$idReservation";
+	    $txt_req = "DELETE FROM mrbs_entry WHERE id = :idReservation";
 	    $req = $this->cnx->prepare($txt_req);
 	    //liaison de la requête et de ses paramètres
-	    $req->bindValue("idReservation", $idReservation, PDO::PARAM_STR);
+	    $req->bindValue("idReservation", $idReservation, PDO::PARAM_INT);
 	    
 	    // exécution de la requête
 	    $ok = $req->execute();
@@ -254,12 +254,12 @@ class DAO
 
 	
 	
-	public function existeReservation($uneReservation)
+	public function existeReservation($idReservation)
 	{
-	    $txt_req = "Select count(*) from mrbs_entry where id = :uneReservation";
+	    $txt_req = "Select count(*) from mrbs_entry where id = :idReservation";
 	    $req = $this->cnx->prepare($txt_req);
 	    // liaison de la requête et de ses paramètres
-	    $req->bindValue(":uneReservation", $uneReservation, PDO::PARAM_STR);
+	    $req->bindValue(":idReservation", $idReservation, PDO::PARAM_STR);
 	    // exécution de la requete
 	    $req->execute();
 	    $nbReponses = $req->fetchColumn(0);
@@ -270,7 +270,7 @@ class DAO
 	    if ($nbReponses == 0)
 	        return false;
 	    else
-	            return true;
+	        return true;
 	}
 	
 	// génération aléatoire d'un digicode de 6 caractères hexadécimaux
