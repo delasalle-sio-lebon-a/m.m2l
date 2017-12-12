@@ -401,26 +401,26 @@ class DAO
 	public function testerDigicodeBatiment($digicodeSaisi)
 	
 	{	global $DELAI_DIGICODE;
-	// préparation de la requete de recherche
-	$txt_req = "Select digicode";
-	$txt_req = $txt_req . " from mrbs_entry_digicode";
-	$txt_req = $txt_req . " where :digicodeSaisi = mrbs_entry_digicode.id";
-
-	
-	$req = $this->cnx->prepare($txt_req);
-	// liaison de la requête et de ses paramètres
-	$req->bindValue("digicodeSaisi", $digicodeSaisi, PDO::PARAM_STR);
-	
-	// exécution de la requete
-	$req->execute();
-	// libère les ressources du jeu de données
-	$req->closeCursor();
-	
-	// fourniture de la réponse
-	if ($digicodeSaisi == 0)
-	    return "0";
-	else
-	    return "1";
+    	// préparation de la requete de recherche
+    	$txt_req = "Select digicode";
+    	$txt_req = $txt_req . " from mrbs_entry_digicode";
+    	$txt_req = $txt_req . " where :digicodeSaisi = mrbs_entry_digicode.id";
+    
+    	
+    	$req = $this->cnx->prepare($txt_req);
+    	// liaison de la requête et de ses paramètres
+    	$req->bindValue("digicodeSaisi", $digicodeSaisi, PDO::PARAM_STR);
+    	
+    	// exécution de la requete
+    	$req->execute();
+    	// libère les ressources du jeu de données
+    	$req->closeCursor();
+    	
+    	// fourniture de la réponse
+    	if ($digicodeSaisi == 0)
+    	    return "0";
+    	else
+    	    return "1";
 	}
 	
 	
@@ -548,7 +548,7 @@ class DAO
            $sujet="Nouveau mot de passe";
            $message="Modification du mot de passe effectué";
            $message="Votre nouveau mot de passe est " . $nouveauMdp;
-           $ok=Outils::envoyerMail($adresseDestinataire, $sujet, $message, $ADR_MAIL_EMETTEUR);
+           $ok = Outils::envoyerMail($adresseDestinataire, $sujet, $message, $ADR_MAIL_EMETTEUR);
            
            return $ok;
      }
@@ -563,9 +563,9 @@ class DAO
         $req->bindvalue(":name", $name, PDO::PARAM_STR);
         $req->bindvalue(":mdp", md5($mdp), PDO::PARAM_STR);
         
-        $req->execute();
+        $ok = $req->execute();
         
-        return $name;
+        return $ok;
     }  
  
     public function estLeCreateur($nom, $idReservation)
