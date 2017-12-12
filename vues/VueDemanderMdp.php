@@ -19,7 +19,7 @@
 				<?php } ?>
 			} );
 		</script>
-	</head>
+	</head> 
 	
 	<body>
 		<div data-role="page" id="page_principale">
@@ -33,7 +33,7 @@
 				<form action="index.php?action=DemanderMdp" method="post" data-ajax="false">
 					<div data-role="fieldcontain" class="ui-hide-label">
 						
-						<input type="text" name="txtIdRes" id="txtIdRes" required placeholder="Entrez votre nom" value="<?php echo $idRes; ?>"/>
+						<input type="text" name="txtNom" id="txtNom" required placeholder="Entrez votre nom" value="<?php echo $nom; ?>"/>
 					</div>
 					
 					<div data-role="fieldcontain">
@@ -41,9 +41,9 @@
 					</div>
 				</form>
 
-				<?php if($debug == true) {
+				<?php if ($debug == true) {
 					// en mise au point, on peut afficher certaines variables dans la page
-					echo "<p>id de réservation = " . $idRes . "</p>";
+					echo "<p>nom = " . $nom . "</p>";
 				} ?>
 				
 			</div>

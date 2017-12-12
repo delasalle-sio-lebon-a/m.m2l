@@ -56,7 +56,7 @@ else {
                     include_once ('vues/VueAnnulerReservation.php');
                 }
                 else {                      
-                        $ok = $dao->annulerReservation($idRes);
+                    $ok = $dao->annulerReservation($idRes);
                     if ( ! $ok) {
                         // si l'enregistrement a échoué, réaffichage de la vue avec un message explicatif
                         $message = "Problème lors de l'enregistrement !";
