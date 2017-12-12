@@ -22,14 +22,14 @@ else {
 	*/
 	
 	// récupération des réservations à venir créées par l'utilisateur à l'aide de la méthode getLesReservations de la classe DAO
-	$lesSalles = $dao->getLesSalles($id);
+	$lesSalles = $dao->getLesSalles();
 	
 	// mémorisation du nombre de réservations
 	$nbReponses = sizeof($lesSalles);
 
 	// préparation d'un message précédent la liste
 	if ($nbReponses == 0) {
-		$message = "il n'y a aucne salle !";
+		$message = "il n'y a aucune salle !";
 	}
 	else {
 		$message = "Il y a " . $nbReponses . " salle(s) !";

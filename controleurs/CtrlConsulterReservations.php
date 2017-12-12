@@ -16,8 +16,11 @@ else {
 	include_once ('modele/DAO.class.php');
 	$dao = new DAO();
 	
+	/*
 	// mise à jour de la table mrbs_entry_digicode (si besoin) pour créer les digicodes manquants
 	$dao->creerLesDigicodesManquants();
+	*/
+	
 	
 	// récupération des réservations à venir créées par l'utilisateur à l'aide de la méthode getLesReservations de la classe DAO
 	$lesReservations = $dao->getLesReservations($nom);
@@ -27,10 +30,10 @@ else {
 
 	// préparation d'un message précédent la liste
 	if ($nbReponses == 0) {
-		$message = "Vous n'avez aucune réservation !";
+		$message = "Il n'y a aucune salle disponible !";
 	}
 	else {
-		$message = "Vous avez " . $nbReponses . " réservation(s) !";
+		$message = "Vous avez " . $nbReponses . " de salle disponibles(s) !";
 	}
 	
 	// affichage de la vue
