@@ -70,14 +70,14 @@ else{
             $ok = Outils::envoyerMail($adresseDestinataire, $sujet, $message, $ADR_MAIL_EMETTEUR);
             if ( ! $ok ) {
                 // si l'envoi de mail a échoué, réaffichage de la vue avec un message explicatif
-                $message = "Suppression non-effectuée.<br>L'envoi du mail à l'utilisateur a rencontré un problème !";
+                $message = "Modification non-effectuée.<br>L'envoi du mail à l'utilisateur a rencontré un problème !";
                 $typeMessage = 'avertissement';
                 $themeFooter = $themeProbleme;
                 include_once ('vues/VueChangerDeMdp.php');
             }
             else {
                 // tout a fonctionné
-                $message = "Suppression effectuée.<br>Un mail va être envoyé à l'utilisateur !";
+                $message = "Modification effectuée.<br>Un mail va être envoyé à l'utilisateur !";
                 $typeMessage = 'information';
                 $themeFooter = $themeNormal;
                 include_once ('vues/VueChangerDeMdp.php');
