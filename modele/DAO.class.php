@@ -465,7 +465,7 @@ class DAO
 		    
 	public function getLesSalles()
 	{	// préparation de la requete de recherche
-	    $txt_req = "Select * FROM mrbs_room WHERE disabled =0 ";
+	    $txt_req = "Select mrbs_room.id, capacity, room_name, area_name FROM mrbs_room, mrbs_area WHERE mrbs_room.area_id = mrbs_area.id ";
 	 	    
 	    $req = $this->cnx->prepare($txt_req);
 	    // liaison de la requête et de ses paramètres
@@ -487,7 +487,7 @@ class DAO
 	        
 	   
 	        
-	        $uneSalle = new Salle($unId, $unName);
+	        $uneSalle = new Salle($unId, $unName, $uncapacity, $uneArea);
 	        // ajout de la réservation à la collection
 	        $lesSalles[] = $uneSalle;
 	        // extrait la ligne suivante

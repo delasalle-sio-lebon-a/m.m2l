@@ -19,7 +19,7 @@ else {
     // récupération des données postées
     if ( empty ($_POST ["txtIdRes"]) == true)  $idRes = "";  else   $idRes = $_POST ["txtIdRes"];
 
-    if ($idRes == '') {
+    if ($nom == '') {
         // si les données sont incorrectes ou incomplètes, réaffichage de la vue de suppression avec un message explicatif
         $message = 'Données incomplètes ou incorrectes !';
         $typeMessage = 'avertissement';
@@ -54,7 +54,7 @@ else {
                     $message = "Cette réservation est déjà confirmée!";
                     $typeMessage = 'avertissement';
                     $themeFooter = $themeProbleme;
-                    include_once ('vues/VueAnnulerReservation.php');
+                    include_once ('vues/VueConfirmerReservation.php');
                 }
                 else {
                     // date ?
