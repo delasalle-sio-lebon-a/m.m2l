@@ -482,13 +482,12 @@ class DAO
 	    {	// création d'un objet Reservation
 	        $unId = utf8_encode($uneLigne->id);
 	        $unName = utf8_encode($uneLigne->room_name);
-	        $sort_key = utf8_encode($uneLigne->sort_key);
-	        $description = utf8_encode($uneLigne->description);
 	        $uncapacity = utf8_encode($uneLigne->capacity);
-	        $room_admin_email = utf8_encode($uneLigne->room_admin_email);
-	        $custom_html = utf8_encode($uneLigne->custom_html);
+	        $uneArea = utf8_encode($uneLigne->area_name );
 	        
-	        $uneSalle = new Salle($unId, $unName,$sort_key, $description, $uncapacity, $room_admin_email, $custom_html);
+	   
+	        
+	        $uneSalle = new Salle($unId, $unName);
 	        // ajout de la réservation à la collection
 	        $lesSalles[] = $uneSalle;
 	        // extrait la ligne suivante

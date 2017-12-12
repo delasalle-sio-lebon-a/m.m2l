@@ -67,8 +67,8 @@ switch($action){
 		//include_once ('controleurs/CtrlConnecter.php'); break;	// ligne provisoire
 	}
 	case 'ConsulterSalles': {
-		//include_once ('controleurs/CtrlConsulterSalles.php'); break;
-		include_once ('controleurs/CtrlMenu.php'); break;	// ligne provisoire
+		include_once ('controleurs/CtrlConsulterSalles.php'); break;
+		//include_once ('controleurs/CtrlMenu.php'); break;	// ligne provisoire
 	}
 	case 'ConsulterReservations': {
 		include_once ('controleurs/CtrlConsulterReservations.php'); break;
@@ -90,7 +90,7 @@ switch($action){
 	}
 	case 'SupprimerUtilisateur': {
 		//include_once ('controleurs/CtrlSupprimerUtilisateur.php'); break;
-		include_once ('controleurs/CtrlMenu.php'); break;	// ligne provisoire
+		include_once ('controleurs/CtrlSupprimerUtilisateur.php'); break;	// ligne provisoire
 	}
 	default : {
 		// toute autre tentative est automatiquement redirigée vers le contrôleur d'authentification
